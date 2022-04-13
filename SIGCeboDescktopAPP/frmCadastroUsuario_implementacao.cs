@@ -16,7 +16,6 @@ namespace SIGCeboDescktopAPP
 	{
 		public override Usuario retorno()
         {
-			
 			objcadastro.Login = this.tbLogin.Text;
 			objcadastro.Senha = this.tbSenha.Text;
 			return objcadastro;

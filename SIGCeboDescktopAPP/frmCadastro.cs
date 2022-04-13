@@ -17,7 +17,7 @@ namespace SIGCeboDescktopAPP
 		public List<CadastroFrm<T>> FormsCadastro {get; set;} 
 		//public List<Func<dynamic,dynamic>> acoesFormulario{get; set;}
         //dynamic retorno;
-		int top = -1;
+		int top = 0;
         int count;
         
         public T usoCadastro;
@@ -82,6 +82,7 @@ namespace SIGCeboDescktopAPP
         
         private void Next()
         {
+            usoCadastro = FormsCadastro[top].retorno();
             top++;
             if (top >= count)
             {
@@ -112,7 +113,7 @@ namespace SIGCeboDescktopAPP
 
         private void frmParent_Load(object sender, EventArgs e)
         {
-            Next();
+            LoadNewForm();
         }
 
         private void btnNext_Click(object sender, EventArgs e)

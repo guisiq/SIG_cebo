@@ -15,15 +15,15 @@ namespace SIGCeboModel.data
 
         public override bool Save(Usuario uso)
 		{
-			SqlTransaction sqlTran = _Conexao.Con.BeginTransaction();
+			SqlTransaction sqlTran = _Conexao.conectar().BeginTransaction();
 			var query = _Conexao.conectar().CreateCommand();
 			query.Transaction = sqlTran;
 			bool retorno;
 			try
 			{
 				query.CommandText = $"INSERT INTO dbo.usuario1"
-												+ "(id"
-												+ ", senha"
+												+ "("
+												+ " senha"
 												+ ", login"
 												+ ", tipo_usuario"
 												+ ", nome"
@@ -40,8 +40,8 @@ namespace SIGCeboModel.data
 												+ ", endereco"
 												+ ", complemento)"
 											+ "VALUES"
-												+ "(@id"
-												+ ", @senha"
+												+ "("
+												+ " @senha"
 												+ ", @login"
 												+ ", @tipo_usuario"
 												+ ", @nome"
@@ -50,7 +50,7 @@ namespace SIGCeboModel.data
 												+ ", @cpf"
 												+ ", @cnpj"
 												+ ", @razao_social"
-												+ ", @pontos"
+												+ ", 0"
 												+ ", @cep"
 												+ ", @estado"
 												+ ", @cidade"
@@ -59,8 +59,9 @@ namespace SIGCeboModel.data
 												+ ", @complemento);";
 
 				query.Parameters.Add("@login", System.Data.SqlDbType.Text).Value = uso.Login;
+				//query.Parameters.Add("@id", System.Data.SqlDbType.BigInt).Value = uso.Id;
 				query.Parameters.Add("@senha", System.Data.SqlDbType.Text).Value = uso.Senha;
-				query.Parameters.Add("@tipo_usuario",System.Data.SqlDbType.Int).Value = (decimal?)uso.TipoUsuario;
+				query.Parameters.Add("@tipo_usuario", System.Data.SqlDbType.Int).Value = (decimal?)uso.TipoUsuario;
 			
 				query.Parameters.Add("@nome", System.Data.SqlDbType.Text).Value = uso.Pessoa.Nome;
 				query.Parameters.Add("@telefone", System.Data.SqlDbType.Text).Value = uso.Pessoa.Telefone;
@@ -69,14 +70,14 @@ namespace SIGCeboModel.data
 				{
 					query.Parameters.Add("@is_pesoa_fisica", System.Data.SqlDbType.Bit).Value = true;
 					query.Parameters.Add("@cpf", System.Data.SqlDbType.Text).Value = ((PessoaFisica)uso.Pessoa).CPF;
-					query.Parameters.Add("@razaoSocial", System.Data.SqlDbType.Text).Value = null;
-					query.Parameters.Add("@cnpj", System.Data.SqlDbType.Text).Value = null;
+					query.Parameters.Add("@razao_social", System.Data.SqlDbType.Text).Value = "";
+					query.Parameters.Add("@cnpj", System.Data.SqlDbType.Text).Value = "";
 
 				}
 				else if (uso.Pessoa is PessoaJuridica)
 				{
 					query.Parameters.Add("@is_pesoa_fisica", System.Data.SqlDbType.Bit).Value = false;
-					query.Parameters.Add("@razaoSocial", System.Data.SqlDbType.Text).Value = ((PessoaJuridica)uso.Pessoa).RazaoSocial;
+					query.Parameters.Add("@razao_social", System.Data.SqlDbType.Text).Value = ((PessoaJuridica)uso.Pessoa).RazaoSocial;
 					query.Parameters.Add("@cnpj", System.Data.SqlDbType.Text).Value = ((PessoaJuridica)uso.Pessoa).Cnpj;
 					query.Parameters.Add("@cpf", System.Data.SqlDbType.Text).Value = null;
 				}
@@ -84,12 +85,12 @@ namespace SIGCeboModel.data
 				{
 					uso.Pessoa.Endereco = new Endereço();
 				}
-				query.Parameters.Add("@cep", System.Data.SqlDbType.Text).Value = uso.Pessoa.Endereco.Cep;
-				query.Parameters.Add("@cidade", System.Data.SqlDbType.Text).Value = uso.Pessoa.Endereco.Cidade;
-				query.Parameters.Add("@estado", System.Data.SqlDbType.Text).Value = uso.Pessoa.Endereco.Estado;
-				query.Parameters.Add("@endereco", System.Data.SqlDbType.Text).Value = uso.Pessoa.Endereco.Endereco;
-				query.Parameters.Add("@bairo", System.Data.SqlDbType.Text).Value = uso.Pessoa.Endereco.Bairo;
-				query.Parameters.Add("@complemento", System.Data.SqlDbType.Text).Value = uso.Pessoa.Endereco.Complemento;
+				query.Parameters.Add("@cep", System.Data.SqlDbType.Text).Value = uso.Pessoa.Endereco.Cep??"";
+				query.Parameters.Add("@cidade", System.Data.SqlDbType.Text).Value = uso.Pessoa.Endereco.Cidade ?? "";
+				query.Parameters.Add("@estado", System.Data.SqlDbType.Text).Value = uso.Pessoa.Endereco.Estado ?? "";
+				query.Parameters.Add("@endereco", System.Data.SqlDbType.Text).Value = uso.Pessoa.Endereco.Endereco ?? "";
+				query.Parameters.Add("@bairo", System.Data.SqlDbType.Text).Value = uso.Pessoa.Endereco.Bairo ?? "";
+				query.Parameters.Add("@complemento", System.Data.SqlDbType.Text).Value = uso.Pessoa.Endereco.Complemento ?? "";
 
 				var result = query.ExecuteNonQuery();
 				sqlTran.Commit();

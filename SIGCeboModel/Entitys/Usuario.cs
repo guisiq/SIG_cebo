@@ -16,7 +16,7 @@ namespace SIGCeboModel.Entitys
 		public string Senha { get; set; }
 		public int Pontos { get; set; } = 0;
 		
-		public TipoUsuario? TipoUsuario { get; set; }
+		public TipoUsuario TipoUsuario { get; set; }
 
 		public Pessoa Pessoa { get; set; }
 		public List<LivroEstoque>? HistoricoVendas { get; set; }
@@ -27,7 +27,7 @@ namespace SIGCeboModel.Entitys
 			Pontos = pontos;
 			Login = login;
 			Senha = senha;
-			TipoUsuario = tipoUsuario;
+			TipoUsuario = tipoUsuario ;
 			Pessoa = pessoa;
 			HistoricoVendas = historicoVendas;
 			HistoricoCompras = historicoCompras;

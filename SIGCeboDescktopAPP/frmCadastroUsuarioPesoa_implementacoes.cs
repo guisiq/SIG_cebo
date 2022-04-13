@@ -16,7 +16,8 @@ namespace SIGCeboDescktopAPP
 	{
 		public override Usuario retorno()
 		{
-			if (this.radBtPesoaFisica.Checked){ 
+			if (this.radBtPesoaFisica.Checked){
+				objcadastro = new Usuario();
 				objcadastro.Pessoa = new PessoaFisica(this.tbCpf.Text,this.tbNome.Text,telefone :tbTelefone.Text);
 				return objcadastro;
 			}else{
