@@ -12,26 +12,29 @@ using System.Windows.Forms;
 
 namespace SIGCeboDescktopAPP
 {
-	public partial class frmCadastro : Form
+	public partial class frmCadastro<T> : Form
 	{
-		public List<CadastroFrm<Usuario>> formsCadastro {get; set;} 
+		public List<CadastroFrm<T>> FormsCadastro {get; set;} 
 		//public List<Func<dynamic,dynamic>> acoesFormulario{get; set;}
         //dynamic retorno;
 		int top = -1;
         int count;
         
-        public Usuario usoCadastro;
+        public T usoCadastro;
+        Dao<T> Dao;
         public Form telaPosFinal;
 
 		public String Titulo {get; set;} 
 		
-        public frmCadastro( )
+        public frmCadastro(List<CadastroFrm<T>> formsCadastro,Dao<T> dao)
 		{
-			this.formsCadastro = new List<CadastroFrm<Usuario>>
-			{
-				new frmCadastroUsuarioPesoa(),
-				new frmCadastroUsuario()
-			};
+			this.FormsCadastro =formsCadastro; 
+            Dao =dao;
+            // new List<CadastroFrm<Usuario>>
+			// {
+			// 	new frmCadastroUsuarioPesoa(),
+			// 	new frmCadastroUsuario()
+			// };
 
 			//this.acoesFormulario =new List<Func<dynamic, dynamic>>() ;
 			count = formsCadastro.Count();
@@ -41,14 +44,14 @@ namespace SIGCeboDescktopAPP
 		
         private void LoadNewForm()
         {
-            formsCadastro[top]?.Hide();
-            formsCadastro[top].TopLevel = false;
-            formsCadastro[top].AutoScroll = true;
-            formsCadastro[top].Dock = DockStyle.Fill;
-            formsCadastro[top].objcadastro = usoCadastro;
+            FormsCadastro[top]?.Hide();
+            FormsCadastro[top].TopLevel = false;
+            FormsCadastro[top].AutoScroll = true;
+            FormsCadastro[top].Dock = DockStyle.Fill;
+            FormsCadastro[top].objcadastro = usoCadastro;
             this.pnlContent.Controls.Clear();
-            this.pnlContent.Controls.Add(formsCadastro[top]);
-            formsCadastro[top].Show();
+            this.pnlContent.Controls.Add(FormsCadastro[top]);
+            FormsCadastro[top].Show();
         }
 
         private void Back()
@@ -103,7 +106,7 @@ namespace SIGCeboDescktopAPP
             }
         }
         private void finalizar (){
-            (new UsuarioDao()).Save(usoCadastro);
+            Dao.Save(usoCadastro);
             this.Close();
         }
 

@@ -1,4 +1,5 @@
-﻿using SIGCeboModel.Entitys;
+﻿using SIGCeboModel.data;
+using SIGCeboModel.Entitys;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +18,12 @@ namespace SIGCeboDescktopAPP
 		
 		public void btCadastro_Click(object sender, EventArgs e)
 		{
-			frmContext = new frmCadastro();
+			var a = new List<CadastroFrm<Usuario>>
+			{
+				new frmCadastroUsuarioPesoa(),
+				new frmCadastroUsuario()
+			};
+			frmContext = new frmCadastro<Usuario>(a , new UsuarioDao());
 			frmContext.TopLevel = false;
 			frmContext.AutoScroll = true;
 			frmContext.Dock = DockStyle.Fill;

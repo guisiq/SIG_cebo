@@ -1,6 +1,6 @@
 ﻿namespace SIGCeboDescktopAPP
 {
-	partial class frmCadastro
+	partial class frmCadastro<T>
 	{
 		/// <summary>
 		/// Required designer variable.
