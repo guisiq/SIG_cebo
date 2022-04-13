@@ -107,6 +107,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
 			this.textBoxSenha.Location = new System.Drawing.Point(422, 203);
 			this.textBoxSenha.Name = "textBoxSenha";
+			this.textBoxSenha.PasswordChar = '*';
 			this.textBoxSenha.Size = new System.Drawing.Size(174, 23);
 			this.textBoxSenha.TabIndex = 3;
 			// 
@@ -130,7 +131,7 @@
 			this.btnCadastrar.TabIndex = 5;
 			this.btnCadastrar.Text = "Cadastrar";
 			this.btnCadastrar.UseVisualStyleBackColor = true;
-			this.btnCadastrar.Click += new System.EventHandler(Program.FrmTelaprincipal.btCadastro_Click);
+			this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
 			// 
 			// FrmLogin
 			// 

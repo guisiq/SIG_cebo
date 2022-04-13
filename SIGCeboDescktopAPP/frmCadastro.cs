@@ -82,28 +82,31 @@ namespace SIGCeboDescktopAPP
         
         private void Next()
         {
-            usoCadastro = FormsCadastro[top].retorno();
-            top++;
-            if (top >= count)
+            if (FormsCadastro[top].isComplet())
             {
-                finalizar();
-                return;
-            }
-            else
-            {
-                btnBack.Enabled = true;
-                btnNext.Enabled = true;
-                LoadNewForm();
-                if (top + 1 == count)
+                usoCadastro = FormsCadastro[top].retorno();
+                top++;
+                if (top >= count)
                 {
-                    btnNext.Text ="Salvar";
-                    //btnNext.Enabled = false;
+                    finalizar();
+                    return;
                 }
-            }
+                else
+                {
+                    btnBack.Enabled = true;
+                    btnNext.Enabled = true;
+                    LoadNewForm();
+                    if (top + 1 == count)
+                    {
+                        btnNext.Text ="Salvar";
+                        //btnNext.Enabled = false;
+                    }
+                }
 
-            if (top <= 0)
-            {
-                btnBack.Enabled = false;
+                if (top <= 0)
+                {
+                    btnBack.Enabled = false;
+                }
             }
         }
         private void finalizar (){

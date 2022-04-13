@@ -24,8 +24,21 @@ namespace SIGCeboDescktopAPP
 		{
 			var usoDao = new UsuarioDao();
 			Program.FrmTelaprincipal.UsuarioLogado = usoDao.VerificarLogin(login: this.textBoxUsuario.Text, senha: this.textBoxSenha.Text);
-			MessageBox.Show("e pra ter dado certo .");
-			MessageBox.Show(Program.FrmTelaprincipal.UsuarioLogado?.Senha);
+			if (Program.FrmTelaprincipal.UsuarioLogado is not null)
+			{
+				MessageBox.Show("login realizado com sucesso.");
+			}
+			else
+			{
+				MessageBox.Show("falha na autenticação.");
+
+			}
+
+		}
+
+		private void btnCadastrar_Click(object sender, EventArgs e)
+		{
+			Program.FrmTelaprincipal.btCadastro_Click(sender, e);
 		}
 	}
 }

@@ -79,7 +79,7 @@ namespace SIGCeboModel.data
 					query.Parameters.Add("@is_pesoa_fisica", System.Data.SqlDbType.Bit).Value = false;
 					query.Parameters.Add("@razao_social", System.Data.SqlDbType.Text).Value = ((PessoaJuridica)uso.Pessoa).RazaoSocial;
 					query.Parameters.Add("@cnpj", System.Data.SqlDbType.Text).Value = ((PessoaJuridica)uso.Pessoa).Cnpj;
-					query.Parameters.Add("@cpf", System.Data.SqlDbType.Text).Value = null;
+					query.Parameters.Add("@cpf", System.Data.SqlDbType.Text).Value = "";
 				}
 				if (uso.Pessoa.Endereco is null)
 				{

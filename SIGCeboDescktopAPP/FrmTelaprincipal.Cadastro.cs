@@ -21,7 +21,9 @@ namespace SIGCeboDescktopAPP
 			var a = new List<CadastroFrm<Usuario>>
 			{
 				new frmCadastroUsuarioPesoa(),
-				new frmCadastroUsuario()
+				new frmCadastroUsuarioEndereco(),
+				new frmCadastroUsuario(),
+				new FrmTermodeUso()
 			};
 			frmContext = new frmCadastro<Usuario>(a , new UsuarioDao());
 			frmContext.TopLevel = false;

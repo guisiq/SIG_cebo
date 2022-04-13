@@ -10,6 +10,6 @@ namespace SIGCeboDescktopAPP
 	{
 		public T objcadastro ;
 		public abstract T retorno( );
-		// public abstract bool isComplet( );
+		public abstract bool isComplet( );
 	}
 }

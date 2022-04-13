@@ -21,10 +21,21 @@ namespace SIGCeboDescktopAPP
 				objcadastro.Pessoa = new PessoaFisica(this.tbCpf.Text,this.tbNome.Text,telefone :tbTelefone.Text);
 				return objcadastro;
 			}else{
+				objcadastro = new Usuario();
 				objcadastro.Pessoa = new PessoaJuridica(this.tbRasaosocial.Text,this.tbCpf.Text,this.tbNome.Text,telefone:this.tbTelefone.Text);
 				return objcadastro;
 			}
 		}
+		 public override bool isComplet()
+        {
+            if(this.tbNome.Text is null || this.tbNome.Text == string.Empty 
+				||this.tbTelefone.Text is null || this.tbTelefone.Text == string.Empty ){
+				MessageBox.Show("insira os campos obrigatorios ");
+				return false ;
+			}else{
+				return true;
+			}
+        }
 		
 	}
 }
