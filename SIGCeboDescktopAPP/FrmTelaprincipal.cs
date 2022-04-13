@@ -17,6 +17,19 @@ namespace SIGCeboDescktopAPP
 		{
 			InitializeComponent();
 		}
-		Form frmContext;		
+		Form frmContext;
+
+		private void btnListarLivros_Click(object sender, EventArgs e)
+		{
+			frmContext = new frmListar_livro();
+			frmContext.TopLevel = false;
+			frmContext.AutoScroll = true;
+			frmContext.Dock = DockStyle.Fill;
+
+			this.panelContext.Controls.Clear();
+			this.panelContext.Controls.Add(frmContext);
+			frmContext.Show();
+			
+		}
 	}
 }

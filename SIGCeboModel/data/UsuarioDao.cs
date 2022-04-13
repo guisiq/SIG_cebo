@@ -9,18 +9,11 @@ using System.Threading.Tasks;
 
 namespace SIGCeboModel.data
 {
-	public class UsuarioDao
+	public class UsuarioDao:Dao<Usuario>
 	{
 		
-		public bool Encontrado { get; private set; }
-		private Conexao _Conexao = new Conexao();
 
-        public void VerificarLogin(object login, object senha)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Save(Usuario uso)
+        public override bool Save(Usuario uso)
 		{
 			SqlTransaction sqlTran = _Conexao.Con.BeginTransaction();
 			var query = _Conexao.conectar().CreateCommand();
@@ -123,7 +116,7 @@ namespace SIGCeboModel.data
 			return retorno;	
 
 		}
-		public List<Usuario>? FindAll()
+		public override List<Usuario>? FindAll()
 		{
 			var query = _Conexao.conectar().CreateCommand();
 			var usuarios = new List<Usuario>();
@@ -209,7 +202,7 @@ namespace SIGCeboModel.data
 			return usuarios;
 
 		}
-		public Usuario? FindById(long id)
+		public override Usuario? FindById(long id)
 		{
 			var query = _Conexao.conectar().CreateCommand();
 			Usuario? usuario= null;

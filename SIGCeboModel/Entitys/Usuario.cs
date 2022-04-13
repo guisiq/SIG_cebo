@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SIGCeboModel.Entitys
 {
-	public class Usuario : DefaultEntity
+	public class Usuario
 	{
 		
 		public long Id { get ; set; }

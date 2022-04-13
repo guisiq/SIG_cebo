@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace SIGCeboModel.Entitys
 {
-	public class Livro : DefaultEntity
+	public class Livro 
 	{
 		public String Autor { get; set; }
 		public String Titulo { get; set; }
-		public String Sinopse { get; set; }
+		public String? Sinopse { get; set; }
 
 		public int Edicao { get; set; }
 

@@ -8,13 +8,15 @@ namespace SIGCeboModel.Entitys
 {
 	public class LivroEstoque
 	{
-		public Pessoa Pessoa { get; set; }
+		public Usuario UsuarioVenda { get; set; }
+		public Usuario UsuarioCompra { get; set; }
 		public StatusConservacao StatusConservacao { get; set; }
+		public Livro Livro { get; set; }
 		public StatusEsstoque StatusEsstoque { get; set; }
 
-		public LivroEstoque(Pessoa pessoa, StatusConservacao statusConservacao, StatusEsstoque statusEsstoque)
+		public LivroEstoque(Usuario usuarioCompra, StatusConservacao statusConservacao, StatusEsstoque statusEsstoque)
 		{
-			Pessoa = pessoa;
+			UsuarioCompra = usuarioCompra;
 			StatusConservacao = statusConservacao;
 			StatusEsstoque = statusEsstoque;
 		}

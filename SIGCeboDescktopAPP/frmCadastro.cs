@@ -1,4 +1,5 @@
-﻿using SIGCeboModel.Entitys;
+﻿using SIGCeboModel.data;
+using SIGCeboModel.Entitys;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -40,6 +41,7 @@ namespace SIGCeboDescktopAPP
 		
         private void LoadNewForm()
         {
+            formsCadastro[top]?.Hide();
             formsCadastro[top].TopLevel = false;
             formsCadastro[top].AutoScroll = true;
             formsCadastro[top].Dock = DockStyle.Fill;
@@ -60,6 +62,7 @@ namespace SIGCeboDescktopAPP
             else
             {
                 btnBack.Enabled = true;
+                btnNext.Text ="Avançar";
                 btnNext.Enabled = true;
                 LoadNewForm();
                 if (top - 1 <= -1)
@@ -67,20 +70,19 @@ namespace SIGCeboDescktopAPP
                     btnBack.Enabled = false;
                 }
             }
-
             if (top >= count)
             {
+                
                 btnNext.Enabled = false;
             }
         }
         
         private void Next()
         {
-			
-			
             top++;
             if (top >= count)
             {
+                finalizar();
                 return;
             }
             else
@@ -90,8 +92,8 @@ namespace SIGCeboDescktopAPP
                 LoadNewForm();
                 if (top + 1 == count)
                 {
+                    btnNext.Text ="Salvar";
                     //btnNext.Enabled = false;
-                    btnNext.Enabled = false;
                 }
             }
 
@@ -99,6 +101,10 @@ namespace SIGCeboDescktopAPP
             {
                 btnBack.Enabled = false;
             }
+        }
+        private void finalizar (){
+            (new UsuarioDao()).Save(usoCadastro);
+            this.Close();
         }
 
         private void frmParent_Load(object sender, EventArgs e)

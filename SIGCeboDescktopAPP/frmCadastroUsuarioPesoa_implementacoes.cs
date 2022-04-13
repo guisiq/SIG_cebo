@@ -24,5 +24,6 @@ namespace SIGCeboDescktopAPP
 				return objcadastro;
 			}
 		}
+		
 	}
 }

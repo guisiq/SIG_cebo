@@ -13,7 +13,7 @@ namespace SIGCeboDescktopAPP
 {
 	public partial class FrmTelaprincipal : Form
 	{
-		public Usuario? UsuarioCadastro{get ;set;}
+		
 		
 		public void btCadastro_Click(object sender, EventArgs e)
 		{
