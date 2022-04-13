@@ -1,12 +1,14 @@
-﻿namespace SIGCeboDescktopAPP
+﻿using SIGCeboModel.Entitys;
+
+namespace SIGCeboDescktopAPP
 {
-	partial class frmCadastroUsuarioPesoa : Form
+	partial class frmCadastroUsuarioPesoa
 	{
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.IContainer components = null;
-
+		public Pessoa Pessoa;
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
@@ -31,14 +33,16 @@
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.labelNome = new System.Windows.Forms.Label();
 			this.radBtPesoaFisica = new System.Windows.Forms.RadioButton();
-			this.label1 = new System.Windows.Forms.Label();
-			this.radioButton1 = new System.Windows.Forms.RadioButton();
-			this.label2 = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
-			this.textBox4 = new System.Windows.Forms.TextBox();
-			this.textBox1 = new System.Windows.Forms.TextBox();
-			this.textBox2 = new System.Windows.Forms.TextBox();
-			this.textBox3 = new System.Windows.Forms.TextBox();
+			this.labeltelefone = new System.Windows.Forms.Label();
+			this.radbtPessoaJuridica = new System.Windows.Forms.RadioButton();
+			this.labelcpf = new System.Windows.Forms.Label();
+			this.labelcnpj = new System.Windows.Forms.Label();
+			this.tbNome = new System.Windows.Forms.TextBox();
+			this.tbTelefone = new System.Windows.Forms.TextBox();
+			this.tbCpf = new System.Windows.Forms.TextBox();
+			this.tbCnpj = new System.Windows.Forms.TextBox();
+			this.labelRasaoSocial = new System.Windows.Forms.Label();
+			this.tbRasaosocial = new System.Windows.Forms.TextBox();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -52,14 +56,16 @@
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.tableLayoutPanel1.Controls.Add(this.labelNome, 1, 1);
 			this.tableLayoutPanel1.Controls.Add(this.radBtPesoaFisica, 1, 3);
-			this.tableLayoutPanel1.Controls.Add(this.label1, 1, 2);
-			this.tableLayoutPanel1.Controls.Add(this.radioButton1, 2, 3);
-			this.tableLayoutPanel1.Controls.Add(this.label2, 1, 4);
-			this.tableLayoutPanel1.Controls.Add(this.label3, 1, 5);
-			this.tableLayoutPanel1.Controls.Add(this.textBox4, 2, 1);
-			this.tableLayoutPanel1.Controls.Add(this.textBox1, 2, 2);
-			this.tableLayoutPanel1.Controls.Add(this.textBox2, 2, 4);
-			this.tableLayoutPanel1.Controls.Add(this.textBox3, 2, 5);
+			this.tableLayoutPanel1.Controls.Add(this.labeltelefone, 1, 2);
+			this.tableLayoutPanel1.Controls.Add(this.radbtPessoaJuridica, 2, 3);
+			this.tableLayoutPanel1.Controls.Add(this.tbNome, 2, 1);
+			this.tableLayoutPanel1.Controls.Add(this.tbTelefone, 2, 2);
+			this.tableLayoutPanel1.Controls.Add(this.tbCpf, 2, 4);
+			this.tableLayoutPanel1.Controls.Add(this.labelcpf, 1, 4);
+			//this.tableLayoutPanel1.Controls.Add(this.labelcnpj, 1, 5);
+			//this.tableLayoutPanel1.Controls.Add(this.tbCnpj, 2, 5);
+			//this.tableLayoutPanel1.Controls.Add(this.labelRasaoSocial, 1, 6);
+			//this.tableLayoutPanel1.Controls.Add(this.tbRasaosocial, 2, 6);
 			this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -74,6 +80,7 @@
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.tableLayoutPanel1.Size = new System.Drawing.Size(837, 450);
 			this.tableLayoutPanel1.TabIndex = 0;
+			this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
 			// 
 			// labelNome
 			// 
@@ -97,83 +104,104 @@
 			this.radBtPesoaFisica.TabIndex = 4;
 			this.radBtPesoaFisica.TabStop = true;
 			this.radBtPesoaFisica.Text = "Pesoa Fisica";
+			radBtPesoaFisica.Checked = true;
 			this.radBtPesoaFisica.UseVisualStyleBackColor = true;
+			this.radBtPesoaFisica.CheckedChanged += new System.EventHandler(this.radBtPesoaFisica_CheckedChanged);
 			// 
-			// label1
+			// labeltelefone
 			// 
-			this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(205, 190);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(53, 15);
-			this.label1.TabIndex = 7;
-			this.label1.Text = "telefone:";
+			this.labeltelefone.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.labeltelefone.AutoSize = true;
+			this.labeltelefone.Location = new System.Drawing.Point(205, 190);
+			this.labeltelefone.Name = "labeltelefone";
+			this.labeltelefone.Size = new System.Drawing.Size(53, 15);
+			this.labeltelefone.TabIndex = 7;
+			this.labeltelefone.Text = "telefone:";
 			// 
-			// radioButton1
+			// radbtPessoaJuridica
 			// 
-			this.radioButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.radbtPessoaJuridica.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.radioButton1.AutoSize = true;
-			this.radioButton1.Location = new System.Drawing.Point(264, 238);
-			this.radioButton1.Name = "radioButton1";
-			this.radioButton1.Size = new System.Drawing.Size(549, 64);
-			this.radioButton1.TabIndex = 8;
-			this.radioButton1.TabStop = true;
-			this.radioButton1.Text = "Pesoa juridica";
-			this.radioButton1.UseVisualStyleBackColor = true;
+			this.radbtPessoaJuridica.AutoSize = true;
+			this.radbtPessoaJuridica.Location = new System.Drawing.Point(264, 238);
+			this.radbtPessoaJuridica.Name = "radbtPessoaJuridica";
+			this.radbtPessoaJuridica.Size = new System.Drawing.Size(549, 64);
+			this.radbtPessoaJuridica.TabIndex = 8;
+			this.radbtPessoaJuridica.TabStop = true;
+			this.radbtPessoaJuridica.Text = "Pesoa juridica";
+			this.radbtPessoaJuridica.UseVisualStyleBackColor = true;
+			this.radbtPessoaJuridica.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
 			// 
-			// label2
+			// labelcpf
 			// 
-			this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(205, 320);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(53, 15);
-			this.label2.TabIndex = 9;
-			this.label2.Text = "telefone:";
+			this.labelcpf.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.labelcpf.AutoSize = true;
+			this.labelcpf.Location = new System.Drawing.Point(231, 320);
+			this.labelcpf.Name = "labelcpf";
+			this.labelcpf.Size = new System.Drawing.Size(27, 15);
+			this.labelcpf.TabIndex = 9;
+			this.labelcpf.Text = "cpf:";
 			// 
-			// label3
+			// labelcnpj
 			// 
-			this.label3.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(205, 372);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(53, 15);
-			this.label3.TabIndex = 10;
-			this.label3.Text = "telefone:";
+			this.labelcnpj.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.labelcnpj.AutoSize = true;
+			this.labelcnpj.Location = new System.Drawing.Point(225, 372);
+			this.labelcnpj.Name = "labelcnpj";
+			this.labelcnpj.Size = new System.Drawing.Size(33, 15);
+			this.labelcnpj.TabIndex = 10;
+			this.labelcnpj.Text = "cnpj:";
 			// 
-			// textBox4
+			// tbNome
 			// 
-			this.textBox4.Anchor = System.Windows.Forms.AnchorStyles.Left;
-			this.textBox4.Location = new System.Drawing.Point(264, 117);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(195, 23);
-			this.textBox4.TabIndex = 14;
+			this.tbNome.Anchor = System.Windows.Forms.AnchorStyles.Left;
+			this.tbNome.Location = new System.Drawing.Point(264, 117);
+			this.tbNome.Name = "tbNome";
+			this.tbNome.Size = new System.Drawing.Size(195, 23);
+			this.tbNome.TabIndex = 14;
 			// 
-			// textBox1
+			// tbTelefone
 			// 
-			this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-			this.textBox1.Location = new System.Drawing.Point(264, 186);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(195, 23);
-			this.textBox1.TabIndex = 15;
+			this.tbTelefone.Anchor = System.Windows.Forms.AnchorStyles.Left;
+			this.tbTelefone.Location = new System.Drawing.Point(264, 186);
+			this.tbTelefone.Name = "tbTelefone";
+			this.tbTelefone.Size = new System.Drawing.Size(195, 23);
+			this.tbTelefone.TabIndex = 15;
 			// 
-			// textBox2
+			// tbCpf
 			// 
-			this.textBox2.Anchor = System.Windows.Forms.AnchorStyles.Left;
-			this.textBox2.Location = new System.Drawing.Point(264, 316);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(195, 23);
-			this.textBox2.TabIndex = 16;
+			this.tbCpf.Anchor = System.Windows.Forms.AnchorStyles.Left;
+			this.tbCpf.Location = new System.Drawing.Point(264, 316);
+			this.tbCpf.Name = "tbCpf";
+			this.tbCpf.Size = new System.Drawing.Size(195, 23);
+			this.tbCpf.TabIndex = 16;
 			// 
-			// textBox3
+			// tbCnpj
 			// 
-			this.textBox3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-			this.textBox3.Location = new System.Drawing.Point(264, 368);
-			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(195, 23);
-			this.textBox3.TabIndex = 17;
+			this.tbCnpj.Anchor = System.Windows.Forms.AnchorStyles.Left;
+			this.tbCnpj.Location = new System.Drawing.Point(264, 368);
+			this.tbCnpj.Name = "tbCnpj";
+			this.tbCnpj.Size = new System.Drawing.Size(195, 23);
+			this.tbCnpj.TabIndex = 17;
+			// 
+			// labelRasaoSocial
+			// 
+			this.labelRasaoSocial.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.labelRasaoSocial.AutoSize = true;
+			this.labelRasaoSocial.Location = new System.Drawing.Point(183, 411);
+			this.labelRasaoSocial.Name = "labelRasaoSocial";
+			this.labelRasaoSocial.Size = new System.Drawing.Size(75, 15);
+			this.labelRasaoSocial.TabIndex = 18;
+			this.labelRasaoSocial.Text = "Rasao Social:";
+			// 
+			// tbRasaosocial
+			// 
+			this.tbRasaosocial.Anchor = System.Windows.Forms.AnchorStyles.Left;
+			this.tbRasaosocial.Location = new System.Drawing.Point(264, 412);
+			this.tbRasaosocial.Name = "tbRasaosocial";
+			this.tbRasaosocial.Size = new System.Drawing.Size(195, 23);
+			this.tbRasaosocial.TabIndex = 19;
 			// 
 			// frmCadastroUsuarioPesoa
 			// 
@@ -194,14 +222,16 @@
 
 		private TableLayoutPanel tableLayoutPanel1;
 		private Label labelNome;
+		private Label labeltelefone;
+		private Label labelcpf;
+		private Label labelcnpj;
+		private Label labelRasaoSocial;
+		private TextBox tbNome;
+		private TextBox tbTelefone;
+		private TextBox tbCpf;
+		private TextBox tbCnpj;
+		private TextBox tbRasaosocial;
 		private RadioButton radBtPesoaFisica;
-		private Label label1;
-		private RadioButton radioButton1;
-		private Label label2;
-		private Label label3;
-		private TextBox textBox4;
-		private TextBox textBox1;
-		private TextBox textBox2;
-		private TextBox textBox3;
+		private RadioButton radbtPessoaJuridica;
 	}
 }

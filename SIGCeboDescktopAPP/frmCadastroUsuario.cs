@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SIGCeboModel.Entitys;
 
 namespace SIGCeboDescktopAPP
 {
-	public partial class frmCadastroUsuario : Form
+	public partial class frmCadastroUsuario
 	{
 		public frmCadastroUsuario()
 		{
@@ -31,5 +32,6 @@ namespace SIGCeboDescktopAPP
 		{
 
 		}
-	}
+
+    }
 }

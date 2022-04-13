@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SIGCeboModel.Entitys;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,16 +13,27 @@ namespace SIGCeboDescktopAPP
 {
 	public partial class frmCadastro : Form
 	{
-		public List<Form> formsCadastro {get; set;} 
+		public List<CadastroFrm<Usuario>> formsCadastro {get; set;} 
+		//public List<Func<dynamic,dynamic>> acoesFormulario{get; set;}
+        //dynamic retorno;
 		int top = -1;
         int count;
+        
+        public Usuario usoCadastro;
+        public Form telaPosFinal;
+
 		public String Titulo {get; set;} 
-		public frmCadastro( )
+		
+        public frmCadastro( )
 		{
-            this.formsCadastro =new List<Form>() ;
-            this.formsCadastro.Add(new frmCadastroUsuarioPesoa());
-            this.formsCadastro.Add(new frmCadastroUsuario());
-            count = formsCadastro.Count();
+			this.formsCadastro = new List<CadastroFrm<Usuario>>
+			{
+				new frmCadastroUsuarioPesoa(),
+				new frmCadastroUsuario()
+			};
+
+			//this.acoesFormulario =new List<Func<dynamic, dynamic>>() ;
+			count = formsCadastro.Count();
 
             InitializeComponent();
 		}
@@ -31,6 +43,7 @@ namespace SIGCeboDescktopAPP
             formsCadastro[top].TopLevel = false;
             formsCadastro[top].AutoScroll = true;
             formsCadastro[top].Dock = DockStyle.Fill;
+            formsCadastro[top].objcadastro = usoCadastro;
             this.pnlContent.Controls.Clear();
             this.pnlContent.Controls.Add(formsCadastro[top]);
             formsCadastro[top].Show();
@@ -60,9 +73,11 @@ namespace SIGCeboDescktopAPP
                 btnNext.Enabled = false;
             }
         }
+        
         private void Next()
         {
-
+			
+			
             top++;
             if (top >= count)
             {
