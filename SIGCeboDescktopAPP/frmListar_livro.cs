@@ -23,7 +23,7 @@ namespace SIGCeboDescktopAPP
 			LivroDao livroDao = new LivroDao();
 			
 			var livros = livroDao.FindAll();
-			livros?.ForEach(l => this.dataGridView1.Rows.Add(l.Titulo,l.Autor,l.Edicao));
+			livros?.ForEach(l => this.dataGridView1.Rows.Add(l.Titulo,l.Autor,l.Edicao,l.Sinopse));
 		}
 		private void Form1_Load(object sender, EventArgs e)
 		{
